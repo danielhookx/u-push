@@ -30,6 +30,11 @@ const (
 const HttpReqTimeout = 20 * time.Second
 
 type PushClient struct {
+	timeout time.Duration
+}
+
+func (t *PushClient) SetTimeout(timeout time.Duration) {
+	t.timeout = timeout
 }
 
 func (t *PushClient) Send(msg fieldSetter) error {
@@ -53,7 +58,10 @@ func (t *PushClient) Send(msg fieldSetter) error {
 	body := bytes.NewBuffer(postBody)
 	headers := make(map[string]string)
 	headers["User-Agent"] = USER_AGENT
-	byte, err := httpPostJSON(url, headers, body, HttpReqTimeout)
+	if t.timeout < time.Second*5 {
+		t.timeout = HttpReqTimeout
+	}
+	byte, err := httpPostJSON(url, headers, body, t.timeout)
 	if err != nil {
 		var resp map[string]interface{}
 		err = json.Unmarshal(byte, &resp)
@@ -99,7 +107,10 @@ func (t *PushClient) UploadContents(appkey, appMasterSecret, contents string) (s
 	body := bytes.NewBuffer(postBody)
 	headers := make(map[string]string)
 	headers["User-Agent"] = USER_AGENT
-	byte, err := httpPostJSON(url, headers, body, HttpReqTimeout)
+	if t.timeout < time.Second*5 {
+		t.timeout = HttpReqTimeout
+	}
+	byte, err := httpPostJSON(url, headers, body, t.timeout)
 
 	var resp map[string]interface{}
 	err = json.Unmarshal(byte, &resp)
