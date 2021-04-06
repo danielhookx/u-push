@@ -1,6 +1,6 @@
 package android
 
-import "github.com/u-push"
+import "github.com/oofpgDLD/u-push"
 
 type AndroidUnicast struct {
 	*u_push.AndroidNotification

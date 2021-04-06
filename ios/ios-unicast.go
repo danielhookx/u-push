@@ -1,6 +1,6 @@
 package ios
 
-import "github.com/u-push"
+import "github.com/oofpgDLD/u-push"
 
 type IOSUnicast struct {
 	*u_push.IOSNotification

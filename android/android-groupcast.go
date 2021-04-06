@@ -2,7 +2,7 @@ package android
 
 import (
 	"encoding/json"
-	"github.com/u-push"
+	"github.com/oofpgDLD/u-push"
 )
 
 type AndroidGroupcast struct {

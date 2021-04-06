@@ -2,7 +2,7 @@ package ios
 
 import (
 	"encoding/json"
-	"github.com/u-push"
+	"github.com/oofpgDLD/u-push"
 )
 
 type IOSGroupcast struct {

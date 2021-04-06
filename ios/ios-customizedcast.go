@@ -1,7 +1,7 @@
 package ios
 
 import (
-	"github.com/u-push"
+	"github.com/oofpgDLD/u-push"
 )
 
 type IOSCustomizedcast struct {

@@ -1,7 +1,7 @@
 package android
 
 import (
-	"github.com/u-push"
+	"github.com/oofpgDLD/u-push"
 )
 
 type AndroidBroadcast struct {

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	push "github.com/u-push"
+	push "github.com/oofpgDLD/u-push"
 )
 
 func Test_Android(t *testing.T) {
