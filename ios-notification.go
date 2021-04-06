@@ -70,6 +70,17 @@ func (t *IOSNotification) SetCustomizedField(key string, value interface{}) bool
 	return true
 }
 
+type IOSAlert struct {
+	// 可为JSON类型
+	Title    string `json:"title",omitempty`
+	Subtitle string `json:"subtitle",omitempty`
+	Body     string `json:"body",omitempty`
+}
+
+func (t *IOSNotification) SetAlertJson(alert IOSAlert) {
+	t.SetPredefinedKeyValue("alert", alert)
+}
+
 func (t *IOSNotification) SetAlert(token string) {
 	t.SetPredefinedKeyValue("alert", token)
 }
