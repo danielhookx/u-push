@@ -93,3 +93,35 @@ func Test_AndroidExtraReal(t *testing.T) {
 	}
 	t.Log("success")
 }
+
+func Test_AndroidByAlias(t *testing.T) {
+	var client push.PushClient
+	unicast := NewAndroidCustomizedcast("606ebf176a23f17dcf15b2cd", "uengh9mzrvm5zdclyt5ean05ckqc2lxl")
+	//unicast := NewAndroidUnicast("606ebf176a23f17dcf15b2cd", "uengh9mzrvm5zdclyt5ean05ckqc2lxl")
+
+	//unicast.SetDeviceToken("Apjwo_0X0-y0sGcWPxzGrY1dl2qvv_uE7LAeCoivoHjf")
+	unicast.SetAlias("1FdnxKR4r952x2HQA2BTTpFH6tgHYYNs3M", "ADDRESS")
+	//unicast.SetTicker("Android unicast ticker")
+	unicast.SetTitle("测试alias")
+	unicast.SetText("你好！")
+	unicast.GoCustomAfterOpen("")
+	unicast.SetDisplayType(push.NOTIFICATION)
+	unicast.SetMipush(true, "com.fzm.push.SystemPushActivity")
+	// 测试模式
+	unicast.SetTestMode()
+	// Set customized fields
+	unicast.SetExtraField("address", "1FdnxKR4r952x2HQA2BTTpFH6tgHYYNs3M")
+	unicast.SetExtraField("channelType", "0")
+	b, err := json.Marshal(unicast)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	t.Log(string(b))
+	err = client.Send(unicast)
+	if err != nil {
+		t.Error(err)
+		return
+	}
+	t.Log("success")
+}
